@@ -356,6 +356,12 @@ section[id]{scroll-margin-top:96px}
   margin-bottom:18px;
 }
 .tag::before{content:"";width:22px;height:1px;background:var(--grad)}
+.tag__flag{
+  display:inline-block;font-size:25px;line-height:1;
+  filter:drop-shadow(0 5px 9px rgba(0,0,0,.5));
+  animation:bob 3s ease-in-out infinite;
+}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-5deg)}}
 
 .sec__title{
   font-family:var(--f-head);
