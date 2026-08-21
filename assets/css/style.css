@@ -45,11 +45,20 @@ body{
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+  -webkit-user-select:none;user-select:none;
+  -webkit-touch-callout:none;
 }
 
 body.is-locked{overflow:hidden}
 
-img{max-width:100%;height:auto;display:block}
+/* the custom cursor replaces the native one — class is set by JS, so a
+   JS failure still leaves the visitor with a real pointer */
+body.no-cursor,body.no-cursor *{cursor:none !important}
+
+/* typing still needs a caret and a selectable value */
+input,textarea{-webkit-user-select:text;user-select:text}
+
+img{max-width:100%;height:auto;display:block;-webkit-user-drag:none;pointer-events:none}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 ul,ol{list-style:none}
@@ -242,8 +251,7 @@ section[id]{scroll-margin-top:96px}
   font-family:var(--f-mono);font-size:11.5px;letter-spacing:.07em;color:var(--muted);
   text-transform:uppercase;
 }
-.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--c1);box-shadow:0 0 0 0 rgba(34,211,238,.6);animation:pulse 2.4s infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(34,211,238,0)}100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}}
+.eyebrow .flag{width:19px;height:13px;border-radius:2.5px;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,.15)}
 
 .hero__title{
   font-family:var(--f-head);
@@ -418,6 +426,8 @@ section[id]{scroll-margin-top:96px}
 .sec--cases{padding-bottom:0}
 .stack{padding:clamp(24px,4vw,40px) 0 0}
 
+.stack__tail{height:46vh;pointer-events:none}
+
 .case{
   position:sticky;top:88px;
   padding-inline:var(--pad);
@@ -481,19 +491,55 @@ section[id]{scroll-margin-top:96px}
 
 /* ── process (pinned horizontal) ──────────────── */
 .sec--process{padding:0;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-3) 50%,var(--bg) 100%)}
+/* height is recomputed by JS from the real horizontal travel, so the pin
+   never outlasts the animation it drives */
 .pin{height:330vh;position:relative}
 .pin__sticky{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;gap:clamp(28px,4vw,48px);overflow:hidden}
-.pin__head{max-width:var(--wrap)}
+
+/* drifts from the empty space on the left to the empty space on the right
+   as the track advances, so neither end of the pin ever looks dead */
+.pin__ghost{
+  position:absolute;left:0;top:50%;
+  font-family:var(--f-head);font-size:min(42vh,30vw);font-weight:700;letter-spacing:-.06em;line-height:1;
+  color:rgba(255,255,255,.028);
+  transform:translate3d(0,-50%,0);
+  pointer-events:none;user-select:none;
+  will-change:transform,opacity;
+}
+
+.pin__head{max-width:var(--wrap);display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.pin__counter{
+  display:flex;align-items:baseline;gap:5px;flex:none;
+  font-family:var(--f-mono);font-size:13px;color:var(--dim);letter-spacing:.1em;
+}
+.pin__counter b{
+  font-family:var(--f-head);font-size:30px;font-weight:600;letter-spacing:-.03em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.pin__counter i{font-style:normal;opacity:.45}
+
 .track{overflow:hidden}
-.track__inner{display:flex;gap:20px;padding-inline:var(--pad);will-change:transform}
+/* Leading padding centres step 01 at the start. The trailing space has to be
+   a real flex item: scrollWidth ignores a flex container's trailing padding,
+   so padding-right would leave the last step short of the centre. */
+.track__inner{display:flex;gap:20px;padding-left:max(var(--pad),calc(50vw - 215px));will-change:transform}
+.track__inner::after{content:"";flex:none;width:max(var(--pad),calc(50vw - 235px))}
 .step{
-  flex:none;width:min(380px,80vw);
-  padding:34px 30px;border-radius:20px;
+  --f:1;
+  position:relative;
+  flex:none;width:min(430px,82vw);
+  padding:38px 34px;border-radius:22px;
   border:1px solid var(--line);
   background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
-  transition:border-color .4s,transform .4s var(--ease-out);
+  transition:border-color .4s;
+  will-change:transform,opacity;
 }
-.step:hover{border-color:rgba(124,92,255,.45);transform:translateY(-5px)}
+/* rim brightens as the step reaches the middle of the viewport */
+.step::after{
+  content:"";position:absolute;inset:-1px;border-radius:22px;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(124,92,255,calc(var(--f) * .5)),0 30px 70px -40px rgba(124,92,255,calc(var(--f) * .8));
+}
+.step:hover{border-color:rgba(124,92,255,.45)}
 .step__n{
   font-family:var(--f-head);font-size:44px;font-weight:700;letter-spacing:-.05em;
   background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
@@ -634,6 +680,9 @@ section[id]{scroll-margin-top:96px}
   .track__inner{transform:none !important}
   .step{scroll-snap-align:center}
   .track__progress{display:none}
+  .step{transform:none !important;opacity:1 !important}
+  .pin__ghost{display:none}
+  .pin__head{flex-direction:column;align-items:flex-start;gap:14px}
 }
 
 @media (max-width:520px){

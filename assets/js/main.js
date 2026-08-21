@@ -66,6 +66,7 @@
 
   /* ── custom cursor ───────────────────────────── */
   if (fine && !reduced) {
+    document.body.classList.add('no-cursor');
     var cur = $('.cursor');
     var dot = $('.cursor__dot');
     var ring = $('.cursor__ring');
@@ -224,12 +225,29 @@
 
   /* ── scroll-driven work (one handler) ────────── */
   var cases = $$('.case');
+  var processSec = $('.sec--process');
   var pin = $('#pin');
   var trackInner = $('#trackInner');
   var track = $('#track');
   var trackBar = $('#trackBar');
+  var steps = $$('.step');
+  var ghost = $('#pinGhost');
+  var counter = $('#pinCounter');
   var stickyTop = 88;
   var wide = window.innerWidth > 860;
+  var travel = 0;
+  var ghostSpan = 0;
+
+  /* The pin must last exactly as long as the horizontal travel it drives.
+     A fixed height leaves the visitor scrolling through dead space with
+     nothing moving. */
+  function sizePin() {
+    if (!pin || !trackInner || !track) return;
+    if (!wide || reduced) { pin.style.height = ''; return; }
+    travel = Math.max(0, trackInner.scrollWidth - track.clientWidth);
+    pin.style.height = Math.round(window.innerHeight + travel * 0.8) + 'px';
+    ghostSpan = ghost ? Math.max(0, window.innerWidth - ghost.offsetWidth) : 0;
+  }
 
   function onScroll() {
     var sy = window.scrollY || document.documentElement.scrollTop;
@@ -246,12 +264,14 @@
     }
     lastY = sy;
 
-    /* stacked cases: shrink the ones being covered */
+    /* stacked cases: every card recedes as the next one covers it — the
+       last one is covered by the process section instead */
     if (wide && !reduced) {
-      for (var i = 0; i < cases.length - 1; i++) {
+      for (var i = 0; i < cases.length; i++) {
         var inner = cases[i].firstElementChild;
-        var nextTop = cases[i + 1].getBoundingClientRect().top;
-        var p = clamp(1 - (nextTop - stickyTop) / (vh * 0.85), 0, 1);
+        var cover = i + 1 < cases.length ? cases[i + 1] : processSec;
+        if (!cover) continue;
+        var p = clamp(1 - (cover.getBoundingClientRect().top - stickyTop) / (vh * 0.85), 0, 1);
         inner.style.transform = 'scale(' + (1 - p * 0.08).toFixed(4) + ') translate3d(0,' + (-p * 26).toFixed(2) + 'px,0)';
         inner.style.opacity = (1 - p * 0.5).toFixed(3);
       }
@@ -259,12 +279,30 @@
 
     /* pinned horizontal process track */
     if (wide && !reduced && pin && trackInner && track) {
-      var top = pin.offsetTop;
       var span = pin.offsetHeight - vh;
-      var p2 = clamp((sy - top) / (span || 1), 0, 1);
-      var dist = trackInner.scrollWidth - track.clientWidth;
-      trackInner.style.transform = 'translate3d(' + (-dist * p2).toFixed(2) + 'px,0,0)';
+      var p2 = clamp((sy - pin.offsetTop) / (span || 1), 0, 1);
+      trackInner.style.transform = 'translate3d(' + (-travel * p2).toFixed(2) + 'px,0,0)';
       if (trackBar) trackBar.style.width = (p2 * 100).toFixed(2) + '%';
+
+      /* every step reacts to how close it is to the middle of the screen */
+      var cx = window.innerWidth / 2, active = 0, bestD = Infinity;
+      for (var s = 0; s < steps.length; s++) {
+        var r = steps[s].getBoundingClientRect();
+        var d = Math.abs(r.left + r.width / 2 - cx);
+        var f = clamp(1 - d / (window.innerWidth * 0.58), 0, 1);
+        var e = f * f * (3 - 2 * f);
+        steps[s].style.setProperty('--f', e.toFixed(3));
+        steps[s].style.transform = 'translate3d(0,' + ((1 - e) * 34).toFixed(2) + 'px,0) scale(' + (0.9 + e * 0.1).toFixed(4) + ')';
+        steps[s].style.opacity = (0.28 + e * 0.72).toFixed(3);
+        if (d < bestD) { bestD = d; active = s; }
+      }
+
+      var label = ('0' + (active + 1)).slice(-2);
+      if (ghost) {
+        if (ghost.textContent !== label) ghost.textContent = label;
+        ghost.style.transform = 'translate3d(' + (p2 * ghostSpan).toFixed(1) + 'px,-50%,0)';
+      }
+      if (counter && counter.textContent !== label) counter.textContent = label;
     }
   }
 
@@ -279,11 +317,19 @@
     wide = window.innerWidth > 860;
     if (!wide) {
       cases.forEach(function (c) { c.firstElementChild.style.transform = ''; c.firstElementChild.style.opacity = ''; });
+      steps.forEach(function (s) { s.style.transform = ''; s.style.opacity = ''; s.style.removeProperty('--f'); });
       if (trackInner) trackInner.style.transform = '';
     }
+    sizePin();
     onScroll();
   });
+
+  sizePin();
   onScroll();
+  /* web fonts change the step widths, so the pin has to be measured again */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { sizePin(); onScroll(); });
+  }
 
   /* ── contact form → mailto ───────────────────── */
   var form = $('#form');

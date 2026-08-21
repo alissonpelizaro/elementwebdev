@@ -97,8 +97,14 @@
   <div class="hero__inner wrap">
     <div class="hero__copy">
       <p class="eyebrow" data-reveal>
-        <span class="dot"></span>
-        <span data-en="Software house · Brazil">Software house · Brasil</span>
+        <svg class="flag" viewBox="0 0 700 490" aria-hidden="true">
+          <rect width="700" height="490" fill="#009b3a"/>
+          <path d="M350 62 638 245 350 428 62 245z" fill="#fedf00"/>
+          <circle cx="350" cy="245" r="104" fill="#002776"/>
+          <clipPath id="brc"><circle cx="350" cy="245" r="104"/></clipPath>
+          <path d="M232 296q118-66 246-14v34q-128-52-246 14z" fill="#fff" clip-path="url(#brc)"/>
+        </svg>
+        <span data-en="100% Brazilian software house">Software house 100% brasileira</span>
       </p>
 
       <h1 class="hero__title split" data-reveal data-delay="60">
@@ -120,9 +126,9 @@
       </div>
 
       <ul class="hero__stats" data-reveal data-delay="400">
-        <li><b data-count="3">0</b><span data-en="products in production">produtos em produção</span></li>
         <li><b data-count="5">0</b><span data-en="platforms shipped">plataformas atendidas</span></li>
         <li><b data-count="100" data-suffix="%">0</b><span data-en="in-house engineering">engenharia própria</span></li>
+        <li><b data-count="24" data-suffix="h">0</b><span data-en="to answer a brief">para responder um briefing</span></li>
       </ul>
     </div>
 
@@ -336,6 +342,34 @@
       </div>
     </article>
 
+    <article class="case" style="--i:3">
+      <div class="case__inner">
+        <div class="case__meta">
+          <span class="case__no">Case 04</span>
+          <h3 class="case__name">Falcão Lage</h3>
+          <p class="case__kind" data-en="Law firm · Institutional site + lead capture">Advocacia · Site institucional + captação</p>
+          <p class="case__desc" data-en="Digital presence for a full-service law firm: eleven practice areas, partner profiles and a consultation request that reaches the office instantly. Built for authority and for search.">
+            Presença digital para um escritório de advocacia full-service: onze áreas de atuação, perfis dos sócios e um pedido de consulta que chega no escritório na hora. Feito para transmitir autoridade e para ser achado na busca.
+          </p>
+          <ul class="case__tags"><li>Institucional</li><li>SEO</li><li>Multi-área</li><li>WhatsApp</li><li>Responsivo</li></ul>
+          <div class="case__links">
+            <a class="link" href="https://falcaolage.com.br/" target="_blank" rel="noopener">falcaolage.com.br <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+        <div class="case__shot tilt" data-tilt-max="8">
+          <div class="browser">
+            <div class="browser__bar"><i></i><i></i><i></i><span>falcaolage.com.br</span></div>
+            <img src="assets/img/falcaolage.webp" alt="Site do escritório Falcão Lage Advocacia" loading="lazy" decoding="async" width="1280" height="800">
+          </div>
+          <div class="phone">
+            <img src="assets/img/falcaolage-mobile.webp" alt="Falcão Lage em tela de celular" loading="lazy" decoding="async" width="560" height="1213">
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div class="stack__tail" aria-hidden="true"></div>
+
   </div>
 </section>
 
@@ -343,9 +377,13 @@
 <section class="sec sec--process" id="processo">
   <div class="pin" id="pin">
     <div class="pin__sticky">
+      <span class="pin__ghost" id="pinGhost" aria-hidden="true">01</span>
       <div class="wrap pin__head">
-        <p class="tag"><span data-en="How we work">Como trabalhamos</span></p>
-        <h2 class="sec__title" data-en="Five stages. No black box.">Cinco etapas. Nenhuma caixa-preta.</h2>
+        <div>
+          <p class="tag"><span data-en="How we work">Como trabalhamos</span></p>
+          <h2 class="sec__title" data-en="Five stages. No black box.">Cinco etapas. Nenhuma caixa-preta.</h2>
+        </div>
+        <span class="pin__counter" aria-hidden="true"><b id="pinCounter">01</b><i>/</i>05</span>
       </div>
       <div class="track" id="track">
         <div class="track__inner" id="trackInner">
@@ -366,8 +404,8 @@
   <div class="wrap company">
     <div class="company__copy">
       <p class="tag" data-reveal><span data-en="The company">A empresa</span></p>
-      <h2 class="sec__title" data-reveal data-delay="80" data-en="A small team that ships like a big one.">
-        Um time pequeno que entrega como um grande.
+      <h2 class="sec__title" data-reveal data-delay="80" data-en="In-house engineering, from sketch to store.">
+        Engenharia própria, do rascunho à loja.
       </h2>
       <p class="company__text" data-reveal data-delay="140" data-en="Element Web Development LTDA is a Brazilian software company. We build our own products and we build products for clients who need the same standard: software that is fast, accessible, maintainable and genuinely finished.">
         A Element Web Development LTDA é uma empresa brasileira de software. Construímos produtos próprios e construímos produtos para clientes que exigem o mesmo padrão: software rápido, acessível, sustentável e de fato terminado.
@@ -378,7 +416,7 @@
 
       <dl class="legal" data-reveal data-delay="260">
         <div><dt data-en="Legal name">Razão social</dt><dd>Element Web Development LTDA</dd></div>
-        <div><dt>CNPJ</dt><dd data-legal="cnpj">00.000.000/0001-00</dd></div>
+        <div><dt>CNPJ</dt><dd data-legal="cnpj">29.740.328/0001-26</dd></div>
         <div><dt data-en="Headquarters">Sede</dt><dd data-legal="address">Curitiba — PR, Brasil</dd></div>
         <div><dt>E-mail</dt><dd><a href="mailto:contato@elementwebdev.com.br">contato@elementwebdev.com.br</a></dd></div>
       </dl>
@@ -452,7 +490,7 @@
     </nav>
     <p class="foot__legal">
       <span>© <span id="year">2026</span> Element Web Development LTDA</span>
-      <span data-legal="cnpj-line">CNPJ 00.000.000/0001-00</span>
+      <span data-legal="cnpj-line">CNPJ 29.740.328/0001-26</span>
       <span>elementwebdev.com.br</span>
     </p>
   </div>
