@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Element Web Development — Do elemento ao produto</title>
+<meta name="description" content="Software house brasileira especializada em aplicativos mobile e desktop. Projetamos, construímos e publicamos produtos digitais de ponta a ponta.">
+<meta name="theme-color" content="#05060a">
+<meta name="author" content="Element Web Development LTDA">
+<link rel="canonical" href="https://elementwebdev.com.br/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Element Web Development">
+<meta property="og:title" content="Element Web Development — Do elemento ao produto">
+<meta property="og:description" content="Software house brasileira especializada em aplicativos mobile e desktop.">
+<meta property="og:url" content="https://elementwebdev.com.br/">
+<meta property="og:image" content="https://elementwebdev.com.br/assets/img/og.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Element Web Development — Do elemento ao produto">
+<meta name="twitter:description" content="Software house brasileira especializada em aplicativos mobile e desktop.">
+<meta name="twitter:image" content="https://elementwebdev.com.br/assets/img/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Element Web Development LTDA",
+  "alternateName": "Element Web Development",
+  "url": "https://elementwebdev.com.br",
+  "logo": "https://elementwebdev.com.br/assets/favicon.svg",
+  "description": "Software house brasileira especializada no desenvolvimento de aplicativos mobile e desktop.",
+  "email": "contato@elementwebdev.com.br",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "BR",
+    "addressLocality": "Curitiba",
+    "addressRegion": "PR"
+  },
+  "sameAs": ["https://monnif.com", "https://gspiscinas.com.br"]
+}
+</script>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+<div class="scrollbar" aria-hidden="true"><span></span></div>
+
+<a class="skip" href="#main">Pular para o conteúdo</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#top" aria-label="Element Web Development, início">
+      <span class="brand__tile" aria-hidden="true">
+        <span class="brand__num">01</span>
+        <span class="brand__sym">El</span>
+      </span>
+      <span class="brand__text">
+        <strong>Element</strong>
+        <em data-en="Web Development">Web Development</em>
+      </span>
+    </a>
+
+    <nav class="nav__links" aria-label="Navegação principal">
+      <a href="#servicos" data-en="Services">Serviços</a>
+      <a href="#cases" data-en="Work">Cases</a>
+      <a href="#processo" data-en="Process">Processo</a>
+      <a href="#empresa" data-en="Company">Empresa</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="lang" id="lang" type="button" aria-label="Alternar idioma">
+        <span class="lang__opt is-on">PT</span><span class="lang__sep">/</span><span class="lang__opt">EN</span>
+      </button>
+      <a class="btn btn--sm magnetic" href="#contato" data-en="Start a project">Iniciar projeto</a>
+      <button class="burger" id="burger" type="button" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero" id="top">
+  <canvas class="hero__canvas" id="particles" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="grid-floor" aria-hidden="true"></div>
+
+  <div class="hero__inner wrap">
+    <div class="hero__copy">
+      <p class="eyebrow" data-reveal>
+        <span class="dot"></span>
+        <span data-en="Software house · Brazil">Software house · Brasil</span>
+      </p>
+
+      <h1 class="hero__title split" data-reveal data-delay="60">
+        <span class="line" data-en="From the element">Do elemento</span>
+        <span class="line grad" data-en="to the product.">ao produto.</span>
+      </h1>
+
+      <p class="hero__lead" data-reveal data-delay="240" data-en="We are a software house that designs, builds and ships mobile and desktop applications. From the first line of code to the App Store review — every layer is ours.">
+        Somos uma software house que projeta, constrói e publica aplicativos mobile e desktop.
+        Da primeira linha de código até a aprovação na App Store — cada camada é nossa.
+      </p>
+
+      <div class="hero__cta" data-reveal data-delay="320">
+        <a class="btn btn--primary magnetic" href="#contato">
+          <span data-en="Start a project">Iniciar um projeto</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn--ghost magnetic" href="#cases" data-en="See our work">Ver nossos cases</a>
+      </div>
+
+      <ul class="hero__stats" data-reveal data-delay="400">
+        <li><b data-count="3">0</b><span data-en="products in production">produtos em produção</span></li>
+        <li><b data-count="5">0</b><span data-en="platforms shipped">plataformas atendidas</span></li>
+        <li><b data-count="100" data-suffix="%">0</b><span data-en="in-house engineering">engenharia própria</span></li>
+      </ul>
+    </div>
+
+    <div class="hero__art" data-reveal data-delay="200">
+      <div class="tile3d tilt" data-tilt-max="14">
+        <div class="tile3d__glow" aria-hidden="true"></div>
+        <div class="tile3d__face">
+          <span class="tile3d__num">01</span>
+          <span class="tile3d__sym">El</span>
+          <span class="tile3d__name" data-en="Element">Element</span>
+          <span class="tile3d__mass">web · mobile · desktop</span>
+        </div>
+        <div class="tile3d__orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </div>
+
+  <a class="scrollcue" href="#servicos" aria-label="Rolar">
+    <span class="scrollcue__bar"><i></i></span>
+    <span class="scrollcue__txt" data-en="scroll">role</span>
+  </a>
+</section>
+
+<!-- ══════════════ MARQUEE ══════════════ -->
+<section class="strip" aria-label="Tecnologias">
+  <div class="marquee">
+    <div class="marquee__row" id="marqueeRow">
+      <span>Swift</span><i>◆</i><span>Kotlin</span><i>◆</i><span>React Native</span><i>◆</i><span>Flutter</span><i>◆</i>
+      <span>Electron</span><i>◆</i><span>Tauri</span><i>◆</i><span>TypeScript</span><i>◆</i><span>Node.js</span><i>◆</i>
+      <span>Python</span><i>◆</i><span>FastAPI</span><i>◆</i><span>PostgreSQL</span><i>◆</i><span>Redis</span><i>◆</i>
+      <span>AWS</span><i>◆</i><span>Docker</span><i>◆</i><span>LLM / IA</span><i>◆</i>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SERVIÇOS ══════════════ -->
+<section class="sec sec--services spotlight" id="servicos">
+  <div class="wrap">
+    <header class="sec__head">
+      <p class="tag" data-reveal><span data-en="What we do">O que fazemos</span></p>
+      <h2 class="sec__title" data-reveal data-delay="80" data-en="Apps that feel native because they are.">
+        Aplicativos que parecem nativos porque são.
+      </h2>
+      <p class="sec__sub" data-reveal data-delay="160" data-en="Product design, engineering and store publishing under one roof. No handoffs, no agencies in between.">
+        Design de produto, engenharia e publicação nas lojas sob o mesmo teto. Sem repasse, sem intermediário.
+      </p>
+    </header>
+
+    <div class="cards">
+      <article class="card tilt" data-reveal>
+        <span class="card__idx">01</span>
+        <div class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg>
+        </div>
+        <h3 data-en="Mobile apps">Apps Mobile</h3>
+        <p data-en="Native iOS and Android, or a single cross-platform codebase. We handle certificates, provisioning, App Store Connect and review.">
+          iOS e Android nativos, ou uma base cross-platform única. Cuidamos de certificados, provisioning, App Store Connect e review.
+        </p>
+        <ul class="chips"><li>Swift</li><li>Kotlin</li><li>React Native</li><li>Flutter</li></ul>
+      </article>
+
+      <article class="card tilt" data-reveal data-delay="80">
+        <span class="card__idx">02</span>
+        <div class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="12.5" rx="2"/><path d="M8 20.5h8"/></svg>
+        </div>
+        <h3 data-en="Desktop apps">Apps Desktop</h3>
+        <p data-en="macOS, Windows and Linux with real OS integration: keychain, file system, notifications, auto-update and code signing.">
+          macOS, Windows e Linux com integração real ao sistema: keychain, sistema de arquivos, notificações, auto-update e assinatura de código.
+        </p>
+        <ul class="chips"><li>Electron</li><li>Tauri</li><li>Rust</li><li>Node</li></ul>
+      </article>
+
+      <article class="card tilt" data-reveal data-delay="160">
+        <span class="card__idx">03</span>
+        <div class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg>
+        </div>
+        <h3 data-en="Web & PWA">Web & PWA</h3>
+        <p data-en="Installable web products that work offline, push notifications and load fast on any device — without an app store gate.">
+          Produtos web instaláveis que funcionam offline, com push e carregamento rápido em qualquer dispositivo — sem depender da loja.
+        </p>
+        <ul class="chips"><li>React</li><li>Next.js</li><li>Service Workers</li></ul>
+      </article>
+
+      <article class="card tilt" data-reveal data-delay="240">
+        <span class="card__idx">04</span>
+        <div class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v13c0 1.7 3.6 3 8 3s8-1.3 8-3v-13M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+        </div>
+        <h3 data-en="Backend & APIs">Backend & APIs</h3>
+        <p data-en="Services that hold up: authentication, multi-tenant data, integrations, background jobs, observability and cost control.">
+          Serviços que aguentam: autenticação, dados multi-tenant, integrações, jobs em background, observabilidade e controle de custo.
+        </p>
+        <ul class="chips"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>AWS</li></ul>
+      </article>
+
+      <article class="card tilt" data-reveal data-delay="320">
+        <span class="card__idx">05</span>
+        <div class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.5"/></svg>
+        </div>
+        <h3 data-en="Applied AI">IA aplicada</h3>
+        <p data-en="LLMs inside the product, not as a demo: assistants, document extraction, natural-language interfaces and agent workflows.">
+          LLMs dentro do produto, não como demo: assistentes, extração de documentos, interfaces em linguagem natural e fluxos com agentes.
+        </p>
+        <ul class="chips"><li>OpenAI</li><li>RAG</li><li>Agents</li><li>Ollama</li></ul>
+      </article>
+
+      <article class="card tilt" data-reveal data-delay="400">
+        <span class="card__idx">06</span>
+        <div class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5 9 6l4.5 8L16 10l4 9.5z"/></svg>
+        </div>
+        <h3 data-en="Product design">Design de produto</h3>
+        <p data-en="Interface, motion and design system built with the code in mind — so what is designed is exactly what ships.">
+          Interface, movimento e design system construídos pensando no código — o que é desenhado é exatamente o que vai pro ar.
+        </p>
+        <ul class="chips"><li>Figma</li><li>Design System</li><li>Motion</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CASES ══════════════ -->
+<section class="sec sec--cases" id="cases">
+  <div class="wrap">
+    <header class="sec__head sec__head--left">
+      <p class="tag" data-reveal><span data-en="Selected work">Cases selecionados</span></p>
+      <h2 class="sec__title" data-reveal data-delay="80" data-en="Products in production, with real users.">
+        Produtos no ar, com usuários reais.
+      </h2>
+    </header>
+  </div>
+
+  <div class="stack" id="stack">
+
+    <article class="case" style="--i:0">
+      <div class="case__inner">
+        <div class="case__meta">
+          <span class="case__no">Case 01</span>
+          <h3 class="case__name">Monnif</h3>
+          <p class="case__kind" data-en="Fintech · PWA + AI assistant">Fintech · PWA + assistente de IA</p>
+          <p class="case__desc" data-en="A personal finance platform where the whole household shares one view: bills, credit cards, budgets and forecasts. The AI assistant logs expenses from a WhatsApp message, a voice note or a photo of a receipt.">
+            Plataforma de finanças pessoais onde a casa inteira compartilha a mesma visão: contas, cartões, orçamentos e previsões. O assistente de IA lança despesas a partir de uma mensagem no WhatsApp, de um áudio ou da foto de um cupom.
+          </p>
+          <ul class="case__tags"><li>PWA</li><li>IA</li><li>WhatsApp API</li><li>PostgreSQL</li><li>Open Finance-ready</li></ul>
+          <div class="case__links">
+            <a class="link" href="https://monnif.com" target="_blank" rel="noopener">monnif.com <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            <a class="link" href="https://app.monnif.com" target="_blank" rel="noopener">app.monnif.com <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+        <div class="case__shot tilt" data-tilt-max="8">
+          <div class="browser">
+            <div class="browser__bar"><i></i><i></i><i></i><span>monnif.com</span></div>
+            <img src="assets/img/monnif.webp" alt="Página inicial do Monnif" loading="lazy" decoding="async" width="1280" height="800">
+          </div>
+          <div class="phone">
+            <img src="assets/img/monnif-mobile.webp" alt="Monnif em tela de celular" loading="lazy" decoding="async" width="560" height="1213">
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="case" style="--i:1">
+      <div class="case__inner">
+        <div class="case__meta">
+          <span class="case__no">Case 02</span>
+          <h3 class="case__name">Postgly</h3>
+          <p class="case__kind" data-en="Developer tool · Desktop (macOS, Windows, Linux)">Ferramenta dev · Desktop (macOS, Windows, Linux)</p>
+          <p class="case__desc" data-en="A local-first PostgreSQL client with a natural-language SQL assistant. It reads the live schema, writes the query, explains the blast radius of a destructive statement — and only runs when you approve.">
+            Cliente PostgreSQL local-first com assistente de SQL em linguagem natural. Ele lê o schema ao vivo, escreve a query, explica o estrago de um comando destrutivo — e só executa quando você aprova.
+          </p>
+          <ul class="case__tags"><li>Desktop</li><li>Local-first</li><li>LLM</li><li>OS Keyring</li><li>Cross-platform</li></ul>
+          <div class="case__links">
+            <a class="link" href="https://alissonpelizaro.github.io/postgly/" target="_blank" rel="noopener">postgly <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+        <div class="case__shot tilt" data-tilt-max="8">
+          <div class="browser browser--app">
+            <div class="browser__bar"><i></i><i></i><i></i><span>Postgly — desktop</span></div>
+            <img src="assets/img/postgly.webp" alt="Interface do Postgly" loading="lazy" decoding="async" width="1280" height="800">
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="case" style="--i:2">
+      <div class="case__inner">
+        <div class="case__meta">
+          <span class="case__no">Case 03</span>
+          <h3 class="case__name">GS Piscinas</h3>
+          <p class="case__kind" data-en="Services · Institutional site + lead capture">Serviços · Site institucional + captação</p>
+          <p class="case__desc" data-en="Digital presence for a premium pool maintenance company: portfolio, service catalogue and a quote flow that lands straight in WhatsApp — built to convert on mobile first.">
+            Presença digital para uma empresa de manutenção de piscinas de alto padrão: portfólio, catálogo de serviços e um fluxo de orçamento que cai direto no WhatsApp — feito para converter no mobile primeiro.
+          </p>
+          <ul class="case__tags"><li>Institucional</li><li>SEO</li><li>WhatsApp</li><li>Mobile-first</li></ul>
+          <div class="case__links">
+            <a class="link" href="https://gspiscinas.com.br/" target="_blank" rel="noopener">gspiscinas.com.br <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+        <div class="case__shot tilt" data-tilt-max="8">
+          <div class="browser">
+            <div class="browser__bar"><i></i><i></i><i></i><span>gspiscinas.com.br</span></div>
+            <img src="assets/img/gspiscinas.webp" alt="Site da GS Piscinas" loading="lazy" decoding="async" width="1280" height="800">
+          </div>
+          <div class="phone">
+            <img src="assets/img/gspiscinas-mobile.webp" alt="GS Piscinas em tela de celular" loading="lazy" decoding="async" width="560" height="1213">
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════════════ PROCESSO ══════════════ -->
+<section class="sec sec--process" id="processo">
+  <div class="pin" id="pin">
+    <div class="pin__sticky">
+      <div class="wrap pin__head">
+        <p class="tag"><span data-en="How we work">Como trabalhamos</span></p>
+        <h2 class="sec__title" data-en="Five stages. No black box.">Cinco etapas. Nenhuma caixa-preta.</h2>
+      </div>
+      <div class="track" id="track">
+        <div class="track__inner" id="trackInner">
+          <article class="step"><span class="step__n">01</span><h3 data-en="Discovery">Descoberta</h3><p data-en="We map the real problem, the users and the constraints. You leave with scope, budget and a timeline — before a single line of code.">Mapeamos o problema real, os usuários e as restrições. Você sai com escopo, orçamento e prazo — antes de uma linha de código.</p></article>
+          <article class="step"><span class="step__n">02</span><h3 data-en="Design">Design</h3><p data-en="Flows, interface and design system. Clickable prototype so you feel the product before we build it.">Fluxos, interface e design system. Protótipo clicável para você sentir o produto antes de construirmos.</p></article>
+          <article class="step"><span class="step__n">03</span><h3 data-en="Engineering">Engenharia</h3><p data-en="Two-week cycles with a working build at the end of each one. Code review, automated tests and a staging environment you can open.">Ciclos de duas semanas com build funcional ao fim de cada um. Code review, testes automatizados e ambiente de homologação que você abre.</p></article>
+          <article class="step"><span class="step__n">04</span><h3 data-en="Publishing">Publicação</h3><p data-en="App Store and Play Store submission, signing, privacy manifests, store listing and the back-and-forth with review. We handle it.">Submissão na App Store e Play Store, assinatura, manifesto de privacidade, ficha da loja e o vai-e-vem com o review. É com a gente.</p></article>
+          <article class="step"><span class="step__n">05</span><h3 data-en="Evolution">Evolução</h3><p data-en="Monitoring, crash reports, metrics and a roadmap that keeps moving. A shipped product is the start, not the finish line.">Monitoramento, crash reports, métricas e um roadmap que continua andando. Produto no ar é o começo, não a linha de chegada.</p></article>
+        </div>
+      </div>
+      <div class="wrap"><div class="track__progress"><i id="trackBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ EMPRESA ══════════════ -->
+<section class="sec sec--company spotlight" id="empresa">
+  <div class="wrap company">
+    <div class="company__copy">
+      <p class="tag" data-reveal><span data-en="The company">A empresa</span></p>
+      <h2 class="sec__title" data-reveal data-delay="80" data-en="A small team that ships like a big one.">
+        Um time pequeno que entrega como um grande.
+      </h2>
+      <p class="company__text" data-reveal data-delay="140" data-en="Element Web Development LTDA is a Brazilian software company. We build our own products and we build products for clients who need the same standard: software that is fast, accessible, maintainable and genuinely finished.">
+        A Element Web Development LTDA é uma empresa brasileira de software. Construímos produtos próprios e construímos produtos para clientes que exigem o mesmo padrão: software rápido, acessível, sustentável e de fato terminado.
+      </p>
+      <p class="company__text" data-reveal data-delay="200" data-en="No layers of account management, no work farmed out. The person who designs your product is the person who writes it and the person who answers you.">
+        Sem camadas de atendimento, sem terceirização. Quem desenha o seu produto é quem escreve o código e quem responde você.
+      </p>
+
+      <dl class="legal" data-reveal data-delay="260">
+        <div><dt data-en="Legal name">Razão social</dt><dd>Element Web Development LTDA</dd></div>
+        <div><dt>CNPJ</dt><dd data-legal="cnpj">00.000.000/0001-00</dd></div>
+        <div><dt data-en="Headquarters">Sede</dt><dd data-legal="address">Curitiba — PR, Brasil</dd></div>
+        <div><dt>E-mail</dt><dd><a href="mailto:contato@elementwebdev.com.br">contato@elementwebdev.com.br</a></dd></div>
+      </dl>
+    </div>
+
+    <ul class="values">
+      <li class="tilt" data-reveal data-delay="120"><b data-en="Own the whole stack">Domínio da stack inteira</b><span data-en="Interface, backend, infrastructure and store. One team accountable end to end.">Interface, backend, infraestrutura e loja. Um time responsável de ponta a ponta.</span></li>
+      <li class="tilt" data-reveal data-delay="200"><b data-en="Performance is a feature">Performance é funcionalidade</b><span data-en="60 fps, small bundles, cold starts measured. Slow software is broken software.">60 fps, bundles pequenos, cold start medido. Software lento é software quebrado.</span></li>
+      <li class="tilt" data-reveal data-delay="280"><b data-en="Code you can keep">Código que fica com você</b><span data-en="Repository, documentation and credentials are yours from day one. No lock-in.">Repositório, documentação e credenciais são seus desde o primeiro dia. Sem lock-in.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════ CONTATO ══════════════ -->
+<section class="sec sec--contact" id="contato">
+  <div class="aurora aurora--soft" aria-hidden="true"><i></i><i></i></div>
+  <div class="wrap contact">
+    <div class="contact__head">
+      <h2 class="sec__title big" data-reveal data-en="Have a product in mind?">Tem um produto em mente?</h2>
+      <p class="sec__sub" data-reveal data-delay="80" data-en="Tell us what you want to build. We reply within one business day with an honest read on scope, cost and timeline.">
+        Conte o que você quer construir. Respondemos em até um dia útil com uma leitura honesta de escopo, custo e prazo.
+      </p>
+    </div>
+
+    <form class="form" id="form" data-reveal data-delay="140" novalidate>
+      <div class="field">
+        <input type="text" id="f-name" name="name" required autocomplete="name" placeholder=" ">
+        <label for="f-name" data-en="Your name">Seu nome</label>
+      </div>
+      <div class="field">
+        <input type="email" id="f-mail" name="email" required autocomplete="email" placeholder=" ">
+        <label for="f-mail" data-en="E-mail">E-mail</label>
+      </div>
+      <div class="field field--full">
+        <textarea id="f-msg" name="message" rows="4" required placeholder=" "></textarea>
+        <label for="f-msg" data-en="What do you want to build?">O que você quer construir?</label>
+      </div>
+      <button class="btn btn--primary magnetic" type="submit">
+        <span data-en="Send message">Enviar mensagem</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <p class="form__note" id="formNote" role="status" data-en="Opens your e-mail client with the message ready.">Abre seu cliente de e-mail com a mensagem pronta.</p>
+    </form>
+
+    <div class="contact__direct" data-reveal data-delay="200">
+      <a class="direct" href="mailto:contato@elementwebdev.com.br">
+        <span data-en="Write to us">Escreva pra gente</span>
+        <b>contato@elementwebdev.com.br</b>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <div class="foot__brand">
+      <span class="brand__tile brand__tile--sm" aria-hidden="true"><span class="brand__num">01</span><span class="brand__sym">El</span></span>
+      <div>
+        <strong>Element Web Development LTDA</strong>
+        <span data-en="From the element to the product.">Do elemento ao produto.</span>
+      </div>
+    </div>
+    <nav class="foot__links" aria-label="Rodapé">
+      <a href="#servicos" data-en="Services">Serviços</a>
+      <a href="#cases" data-en="Work">Cases</a>
+      <a href="#processo" data-en="Process">Processo</a>
+      <a href="#empresa" data-en="Company">Empresa</a>
+      <a href="#contato" data-en="Contact">Contato</a>
+    </nav>
+    <p class="foot__legal">
+      <span>© <span id="year">2026</span> Element Web Development LTDA</span>
+      <span data-legal="cnpj-line">CNPJ 00.000.000/0001-00</span>
+      <span>elementwebdev.com.br</span>
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
