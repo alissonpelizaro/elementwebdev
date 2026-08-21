@@ -71,9 +71,12 @@
     var dot = $('.cursor__dot');
     var ring = $('.cursor__ring');
     var dx = ptr.x, dy = ptr.y, rx = ptr.x, ry = ptr.y;
+    /* How much of the remaining gap each frame closes. Lower lags further
+       behind the pointer, so the delay scales as 1/RING_EASE. */
+    var RING_EASE = 0.053;
     onFrame(function () {
       dx = lerp(dx, ptr.x, 0.55); dy = lerp(dy, ptr.y, 0.55);
-      rx = lerp(rx, ptr.x, 0.16); ry = lerp(ry, ptr.y, 0.16);
+      rx = lerp(rx, ptr.x, RING_EASE); ry = lerp(ry, ptr.y, RING_EASE);
       dot.style.transform = 'translate3d(' + dx + 'px,' + dy + 'px,0) translate(-50%,-50%)';
       ring.style.transform = 'translate3d(' + rx + 'px,' + ry + 'px,0) translate(-50%,-50%)';
     });
@@ -238,6 +241,11 @@
   var travel = 0;
   var ghostSpan = 0;
 
+  /* Vertical scroll spent per pixel of horizontal travel. Below 1 the track
+     outruns the page and the five steps flick past in one turn of the wheel;
+     above 1 it lags behind, so each step gets real scroll distance. */
+  var PIN_PACE = 1.8;
+
   /* The pin must last exactly as long as the horizontal travel it drives.
      A fixed height leaves the visitor scrolling through dead space with
      nothing moving. */
@@ -245,7 +253,7 @@
     if (!pin || !trackInner || !track) return;
     if (!wide || reduced) { pin.style.height = ''; return; }
     travel = Math.max(0, trackInner.scrollWidth - track.clientWidth);
-    pin.style.height = Math.round(window.innerHeight + travel * 0.8) + 'px';
+    pin.style.height = Math.round(window.innerHeight + travel * PIN_PACE) + 'px';
     ghostSpan = ghost ? Math.max(0, window.innerWidth - ghost.offsetWidth) : 0;
   }
 
@@ -326,8 +334,30 @@
     onScroll();
   });
 
+  /* Mobile drops the pin for a native snap-scroller, so the block above never
+     runs and the counter would read 01 forever. Drive it off the scroller's
+     own offset instead — same ticker, same skip-while-still guard. */
+  var lastTrackX = -1;
+  onFrame(function () {
+    if (wide || reduced || !track || !counter || !steps.length) return;
+    var x = track.scrollLeft;
+    if (x === lastTrackX) return;
+    lastTrackX = x;
+    var tr = track.getBoundingClientRect();
+    var mid = tr.left + tr.width / 2;
+    var best = 0, bestD = Infinity;
+    for (var i = 0; i < steps.length; i++) {
+      var sr = steps[i].getBoundingClientRect();
+      var d = Math.abs(sr.left + sr.width / 2 - mid);
+      if (d < bestD) { bestD = d; best = i; }
+    }
+    var lbl = ('0' + (best + 1)).slice(-2);
+    if (counter.textContent !== lbl) counter.textContent = lbl;
+  });
+
   window.addEventListener('resize', function () {
     wide = window.innerWidth > 860;
+    lastTrackX = -1;
     if (!wide) {
       cases.forEach(function (c) { c.firstElementChild.style.transform = ''; c.firstElementChild.style.opacity = ''; });
       steps.forEach(function (s) { s.style.transform = ''; s.style.opacity = ''; s.style.removeProperty('--f'); });

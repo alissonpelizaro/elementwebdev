@@ -356,6 +356,12 @@ section[id]{scroll-margin-top:96px}
   margin-bottom:18px;
 }
 .tag::before{content:"";width:22px;height:1px;background:var(--grad)}
+.tag__flag{
+  display:inline-block;font-size:25px;line-height:1;
+  filter:drop-shadow(0 5px 9px rgba(0,0,0,.5));
+  animation:bob 3s ease-in-out infinite;
+}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-5deg)}}
 
 .sec__title{
   font-family:var(--f-head);
@@ -523,7 +529,7 @@ section[id]{scroll-margin-top:96px}
 /* Leading padding centres step 01 at the start. The trailing space has to be
    a real flex item: scrollWidth ignores a flex container's trailing padding,
    so padding-right would leave the last step short of the centre. */
-.track__inner{display:flex;gap:20px;padding-left:max(var(--pad),calc(35vw - 215px));will-change:transform}
+.track__inner{display:flex;gap:20px;padding-left:max(var(--pad),calc(35vw - 215px));will-change:transform;margin-bottom: 70px;}
 .track__inner::after{content:"";flex:none;width:max(var(--pad),calc(35vw - 235px))}
 .step{
   --f:1;
@@ -670,7 +676,10 @@ section[id]{scroll-margin-top:96px}
   .nav__links a{padding:12px 14px;font-size:16px}
   .burger{display:grid}
   .nav__actions .btn--sm{display:none}
-  .case{top:76px}
+  /* The deck effect needs cards shorter than the viewport to read. In one
+     column on a phone each card overflows the screen, so sticky just piles
+     opaque slabs on top of each other — plain flow scrolls better. */
+  .case{position:static}
   .phone{display:none}
   .form{grid-template-columns:1fr}
   .hero{padding-top:116px}
