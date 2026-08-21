@@ -441,7 +441,8 @@ section[id]{scroll-margin-top:96px}
   align-items:center;
   padding:clamp(26px,3.4vw,46px);
   border-radius:24px;border:1px solid var(--line);
-  background:linear-gradient(155deg,rgba(16,19,30,.96),rgba(8,10,17,.98));
+  /* fully opaque: stacked cards must never show through one another */
+  background:linear-gradient(155deg,#10131e,#080a11);
   box-shadow:0 40px 100px -46px rgba(0,0,0,1);
   overflow:hidden;
 }
@@ -522,8 +523,8 @@ section[id]{scroll-margin-top:96px}
 /* Leading padding centres step 01 at the start. The trailing space has to be
    a real flex item: scrollWidth ignores a flex container's trailing padding,
    so padding-right would leave the last step short of the centre. */
-.track__inner{display:flex;gap:20px;padding-left:max(var(--pad),calc(50vw - 215px));will-change:transform}
-.track__inner::after{content:"";flex:none;width:max(var(--pad),calc(50vw - 235px))}
+.track__inner{display:flex;gap:20px;padding-left:max(var(--pad),calc(35vw - 215px));will-change:transform}
+.track__inner::after{content:"";flex:none;width:max(var(--pad),calc(35vw - 235px))}
 .step{
   --f:1;
   position:relative;
@@ -715,3 +716,15 @@ section[id]{scroll-margin-top:96px}
 .split.is-in .line__i{transform:none}
 .split .line:nth-child(2) .line__i{transition-delay:.09s}
 @media (prefers-reduced-motion:reduce){.line__i{transform:none}}
+
+/* ── no-JS fallback ───────────────────────────── */
+/* Reveals, the pinned track and the custom cursor all need JS. Without it,
+   show everything in its resting state instead of a blank page. */
+html:not(.js) [data-reveal],
+html:not(.js) .line__i{opacity:1;transform:none}
+html:not(.js) .pin{height:auto}
+html:not(.js) .pin__sticky{position:static;height:auto;padding:clamp(80px,12vw,120px) 0}
+html:not(.js) .pin__ghost{display:none}
+html:not(.js) .track{overflow-x:auto}
+html:not(.js) .case{position:static;margin-bottom:24px}
+html:not(.js) .cursor,html:not(.js) .scrollbar{display:none}

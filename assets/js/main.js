@@ -273,7 +273,11 @@
         if (!cover) continue;
         var p = clamp(1 - (cover.getBoundingClientRect().top - stickyTop) / (vh * 0.85), 0, 1);
         inner.style.transform = 'scale(' + (1 - p * 0.08).toFixed(4) + ') translate3d(0,' + (-p * 26).toFixed(2) + 'px,0)';
-        inner.style.opacity = (1 - p * 0.5).toFixed(3);
+        /* Stays fully opaque while any real part of the card is exposed —
+           fading earlier would punch a hole through to the page background.
+           The last stretch drops to 0 so no two cards are ever translucent
+           on top of each other. */
+        inner.style.opacity = clamp((1 - p) / 0.28, 0, 1).toFixed(3);
       }
     }
 
@@ -324,11 +328,33 @@
     onScroll();
   });
 
+  /* Sizing the pin changes the height of everything below it, which
+     invalidates the scroll position the browser picked for a #hash on load.
+     Re-resolve the anchor after every measurement — unless the visitor has
+     already started scrolling, in which case leave them alone. */
+  var userMoved = false;
+  ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+    window.addEventListener(ev, function () { userMoved = true; }, { passive: true, once: true });
+  });
+
+  function restoreHash() {
+    if (userMoved || !location.hash) return;
+    var t;
+    try { t = document.querySelector(location.hash); } catch (e) { return; }
+    if (!t) return;
+    var prev = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = 'auto';
+    t.scrollIntoView();
+    document.documentElement.style.scrollBehavior = prev;
+    onScroll();
+  }
+
   sizePin();
   onScroll();
+  requestAnimationFrame(restoreHash);
   /* web fonts change the step widths, so the pin has to be measured again */
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(function () { sizePin(); onScroll(); });
+    document.fonts.ready.then(function () { sizePin(); onScroll(); restoreHash(); });
   }
 
   /* ── contact form → mailto ───────────────────── */
