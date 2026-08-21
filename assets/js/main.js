@@ -283,22 +283,26 @@
 
     /* pinned horizontal process track */
     if (wide && !reduced && pin && trackInner && track) {
+      /* Measured against the viewport, not offsetTop: .sec is position:relative,
+         so it is the offsetParent and pin.offsetTop is ~0 rather than the
+         document offset — which pinned the progress at 1 the whole way down. */
       var span = pin.offsetHeight - vh;
-      var p2 = clamp((sy - pin.offsetTop) / (span || 1), 0, 1);
+      var p2 = clamp(-pin.getBoundingClientRect().top / (span || 1), 0, 1);
       trackInner.style.transform = 'translate3d(' + (-travel * p2).toFixed(2) + 'px,0,0)';
       if (trackBar) trackBar.style.width = (p2 * 100).toFixed(2) + '%';
 
-      /* every step reacts to how close it is to the middle of the screen */
-      var cx = window.innerWidth / 2, active = 0, bestD = Infinity;
+      /* Emphasis follows progress, not screen position. Picking the step
+         nearest the viewport centre is unstable at both ends: depending on
+         viewport width the neighbour can sit closer than the first or last
+         step, so the counter would never reach 01 or 05. */
+      var pos = p2 * (steps.length - 1);
+      var active = Math.round(pos);
       for (var s = 0; s < steps.length; s++) {
-        var r = steps[s].getBoundingClientRect();
-        var d = Math.abs(r.left + r.width / 2 - cx);
-        var f = clamp(1 - d / (window.innerWidth * 0.58), 0, 1);
+        var f = clamp(1 - Math.abs(s - pos) / 1.4, 0, 1);
         var e = f * f * (3 - 2 * f);
         steps[s].style.setProperty('--f', e.toFixed(3));
         steps[s].style.transform = 'translate3d(0,' + ((1 - e) * 34).toFixed(2) + 'px,0) scale(' + (0.9 + e * 0.1).toFixed(4) + ')';
         steps[s].style.opacity = (0.28 + e * 0.72).toFixed(3);
-        if (d < bestD) { bestD = d; active = s; }
       }
 
       var label = ('0' + (active + 1)).slice(-2);
@@ -310,12 +314,17 @@
     }
   }
 
-  var queued = false;
-  window.addEventListener('scroll', function () {
-    if (queued) return;
-    queued = true;
-    requestAnimationFrame(function () { onScroll(); queued = false; });
-  }, { passive: true });
+  /* Driven by the shared ticker rather than a scroll listener with a "queued"
+     flag: a single dropped frame would have left that flag stuck at true and
+     killed every later scroll update. Reading scrollY costs nothing and skips
+     the work entirely while the page is still. */
+  var lastScroll = -1;
+  onFrame(function () {
+    var sy = window.scrollY || document.documentElement.scrollTop;
+    if (sy === lastScroll) return;
+    lastScroll = sy;
+    onScroll();
+  });
 
   window.addEventListener('resize', function () {
     wide = window.innerWidth > 860;
