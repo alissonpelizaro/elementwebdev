@@ -331,8 +331,30 @@
     onScroll();
   });
 
+  /* Mobile drops the pin for a native snap-scroller, so the block above never
+     runs and the counter would read 01 forever. Drive it off the scroller's
+     own offset instead — same ticker, same skip-while-still guard. */
+  var lastTrackX = -1;
+  onFrame(function () {
+    if (wide || reduced || !track || !counter || !steps.length) return;
+    var x = track.scrollLeft;
+    if (x === lastTrackX) return;
+    lastTrackX = x;
+    var tr = track.getBoundingClientRect();
+    var mid = tr.left + tr.width / 2;
+    var best = 0, bestD = Infinity;
+    for (var i = 0; i < steps.length; i++) {
+      var sr = steps[i].getBoundingClientRect();
+      var d = Math.abs(sr.left + sr.width / 2 - mid);
+      if (d < bestD) { bestD = d; best = i; }
+    }
+    var lbl = ('0' + (best + 1)).slice(-2);
+    if (counter.textContent !== lbl) counter.textContent = lbl;
+  });
+
   window.addEventListener('resize', function () {
     wide = window.innerWidth > 860;
+    lastTrackX = -1;
     if (!wide) {
       cases.forEach(function (c) { c.firstElementChild.style.transform = ''; c.firstElementChild.style.opacity = ''; });
       steps.forEach(function (s) { s.style.transform = ''; s.style.opacity = ''; s.style.removeProperty('--f'); });
