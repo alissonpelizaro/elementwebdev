@@ -529,7 +529,7 @@ section[id]{scroll-margin-top:96px}
 /* Leading padding centres step 01 at the start. The trailing space has to be
    a real flex item: scrollWidth ignores a flex container's trailing padding,
    so padding-right would leave the last step short of the centre. */
-.track__inner{display:flex;gap:20px;padding-left:max(var(--pad),calc(35vw - 215px));will-change:transform}
+.track__inner{display:flex;gap:20px;padding-left:max(var(--pad),calc(35vw - 215px));will-change:transform;margin-bottom: 70px;}
 .track__inner::after{content:"";flex:none;width:max(var(--pad),calc(35vw - 235px))}
 .step{
   --f:1;

@@ -238,6 +238,11 @@
   var travel = 0;
   var ghostSpan = 0;
 
+  /* Vertical scroll spent per pixel of horizontal travel. Below 1 the track
+     outruns the page and the five steps flick past in one turn of the wheel;
+     above 1 it lags behind, so each step gets real scroll distance. */
+  var PIN_PACE = 1.8;
+
   /* The pin must last exactly as long as the horizontal travel it drives.
      A fixed height leaves the visitor scrolling through dead space with
      nothing moving. */
@@ -245,7 +250,7 @@
     if (!pin || !trackInner || !track) return;
     if (!wide || reduced) { pin.style.height = ''; return; }
     travel = Math.max(0, trackInner.scrollWidth - track.clientWidth);
-    pin.style.height = Math.round(window.innerHeight + travel * 0.8) + 'px';
+    pin.style.height = Math.round(window.innerHeight + travel * PIN_PACE) + 'px';
     ghostSpan = ghost ? Math.max(0, window.innerWidth - ghost.offsetWidth) : 0;
   }
 
