@@ -583,6 +583,45 @@ section[id]{scroll-margin-top:96px}
 .values b{font-family:var(--f-head);font-size:17px;font-weight:600;letter-spacing:-.02em}
 .values span{color:var(--muted);font-size:14.5px;line-height:1.65}
 
+/* ── founder ──────────────────────────────────── */
+/* Fecha a seção Empresa com a pessoa por trás dela: a mesma pastilha de
+   elemento do resto do site, com o símbolo de quem assina. */
+.founder{
+  display:flex;align-items:flex-start;gap:clamp(18px,2.6vw,30px);
+  margin-top:clamp(38px,5vw,62px);
+  padding:clamp(24px,3vw,34px);
+  border-radius:20px;border:1px solid var(--line);
+  background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.01));
+  transition:border-color .45s;
+}
+.founder:hover{border-color:rgba(124,92,255,.45)}
+
+.founder__tile{
+  position:relative;display:grid;place-items:center;flex:none;
+  width:64px;height:64px;border-radius:17px;
+  background:linear-gradient(150deg,rgba(34,211,238,.18),rgba(255,92,240,.18));
+  border:1px solid var(--line);
+  overflow:hidden;
+}
+.founder__tile .brand__num{top:5px;left:8px;font-size:9px}
+.founder__tile .brand__sym{font-size:23px;margin-top:5px}
+
+.founder__body{min-width:0}
+.founder__eyebrow{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--c1);margin-bottom:8px;
+}
+.founder__name{font-family:var(--f-head);font-size:22px;font-weight:600;letter-spacing:-.025em}
+.founder__role{
+  font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;
+  color:var(--muted);margin-top:5px;
+}
+.founder__txt{color:var(--muted);font-size:14.5px;line-height:1.68;margin:14px 0 16px;max-width:62ch}
+
+@media (max-width:560px){
+  .founder{flex-direction:column;gap:16px}
+}
+
 /* ── contact ──────────────────────────────────── */
 .sec--contact{overflow:hidden;isolation:isolate}
 .aurora--soft{filter:blur(110px);opacity:.55}
